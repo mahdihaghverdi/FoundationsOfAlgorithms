@@ -34,11 +34,11 @@ repos:
     -   id: mypy
         additional_dependencies: [types-all]
         args: [--no-strict-optional, --ignore-missing-imports, --show-traceback]
--   repo: https://github.com/pycqa/isort
-    rev: 5.10.1
-    hooks:
-    -   id: isort
-        args: ["--profile", "black"]
+#-   repo: https://github.com/pycqa/isort
+#    rev: 5.10.1
+#    hooks:
+#    -   id: isort
+#        args: ["--profile", "black"]
 -   repo: https://github.com/pycqa/flake8
     rev: 4.0.1
     hooks:
