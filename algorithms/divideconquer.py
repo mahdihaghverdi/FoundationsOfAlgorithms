@@ -1,21 +1,7 @@
-from abc import ABC, abstractmethod
-from typing import TypeVar, Sequence
+from typing import Sequence
 
 
-class Comparable(ABC):
-    @abstractmethod
-    def __lt__(self, other):
-        pass
-
-    @abstractmethod
-    def __gt__(self, other):
-        pass
-
-
-T = TypeVar("T", bound=Comparable)
-
-
-def binsearch(what: T, sequence: Sequence[T]) -> bool:
+def binsearch(what, sequence: Sequence) -> bool:
     """Recursive binary search"""
 
     def _binsearch(low: int, high: int) -> bool:

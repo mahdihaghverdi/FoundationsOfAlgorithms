@@ -1,0 +1,1 @@
+from .divideconquer import binsearch
