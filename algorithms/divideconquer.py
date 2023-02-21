@@ -1,3 +1,5 @@
+import random
+import string
 from collections.abc import Sequence
 from typing import TypeVar, Iterable
 
@@ -71,4 +73,21 @@ def mergesort(iterable: Iterable) -> list:
 
 
 def quicksort(iterable: Iterable) -> list:
-    pass
+    iterable = list(iterable)
+    if len(iterable) < 2:
+        return iterable
+
+    low, same, high = [], [], []
+    pivot = iterable[random.randrange(0, len(iterable))]
+    for item in iterable:
+        if item < pivot:
+            low.append(item)
+        elif item == pivot:
+            same.append(item)
+        else:
+            high.append(item)
+
+    return quicksort(low) + same + quicksort(high)
+
+
+# TODO: Write a parallel version of mergesort using multiprocessing

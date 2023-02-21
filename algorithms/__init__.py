@@ -1,1 +1,1 @@
-from .divideconquer import binsearch, mergesort
+from .divideconquer import binsearch, mergesort, quicksort
