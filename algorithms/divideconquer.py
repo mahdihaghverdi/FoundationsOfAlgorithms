@@ -1,11 +1,13 @@
 from collections.abc import Sequence
-from typing import TypeVar
+from typing import TypeVar, Iterable
 
 T = TypeVar("T", str, int, bool)
 
 
-def binsearch(what: T, sequence: Sequence[T]) -> bool:
+def binsearch(what: T, iterable: Iterable[T]) -> bool:
     """Recursive binary search"""
+
+    _iterable = list(iterable)
 
     def _binsearch(low: int, high: int) -> bool:
         if low > high:
@@ -13,7 +15,7 @@ def binsearch(what: T, sequence: Sequence[T]) -> bool:
         middle_index = (high + low) // 2
 
         try:
-            middle_item = sequence[middle_index]
+            middle_item = _iterable[middle_index]
         except IndexError:
             return False
 
@@ -23,11 +25,13 @@ def binsearch(what: T, sequence: Sequence[T]) -> bool:
             return _binsearch(low=middle_index + 1, high=high)
         return what == middle_item
 
-    return _binsearch(low=0, high=len(sequence))
+    return _binsearch(low=0, high=len(_iterable))
 
 
-def mergesort(sequence: Sequence) -> list:
+def mergesort(iterable: Iterable) -> list:
     """Mergesort a sequence"""
+
+    _iterable = list(iterable)
 
     def merge():
         if len(left) == 0:
@@ -54,10 +58,17 @@ def mergesort(sequence: Sequence) -> list:
                 break
         return result
 
-    seq_len = len(sequence)
+    seq_len = len(_iterable)
     if seq_len < 2:
-        return list(sequence)
-    left, right = sequence[: seq_len // 2], sequence[seq_len // 2:]
+        return _iterable
+    left, right = _iterable[: seq_len // 2], _iterable[seq_len // 2:]
     left = mergesort(left)
     right = mergesort(right)
     return merge()
+
+
+# TODO: Write a parallel version of mergesort using multiprocessing
+
+
+def quicksort(iterable: Iterable) -> list:
+    pass
